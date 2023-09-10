@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%= message  %>
+        <h1>welcome admin
+            <%= employee.firstName %>
+        </h1>
+        <form action="/logout" method="post">
+            <button type="submit">logout</button>
+        </form>
+        <h1 id="h1">All Employees list</h1>
+        <button id="showAvailable" onclick="Available()">Available</button>
+        <button id="showUnavailable" onclick="unAvailable()">Unavailable</button>
+        <a href="/register">add employee</a>
+        <div id="allEmp">
+            <ul>
+                <% for(let e of employees){ %>
+                    <%if(e.isAdmin == false && e.isHOD == false){%>
+
+                        <li>
+                            <%= e.firstName %> -
+                                <%= e.department === '' ? 'not assigned to a department yet' :e.department %> -
+                                    <%= e.isAvailable === true ? 'Available':'Not Available' %> - <a href="account/<%= e._id %> ">details</a>
+                                        <form action="/mkhod/<%= e._id %> " method="post"><button type="submit">Make Head of Department</button></form>
+                        </li>
+                        <% } %>
+                            <% } %>
+            </ul>
+        </div>
+
+        <div id="available" style="display: none;">
+            <ul>
+                <% for(let e of employees){ %>
+                    <%if(e.isAdmin == false && e.isHOD == false && e.isAvailable== true){%>
+
+                        <li>
+                            <%= e.firstName %> -
+                                <%= e.department %> - <a href="account/<%= e._id %> ">details</a>
+                                    <form action="/mkhod/<%= e._id %> " method="post"><button type="submit">Make Head of Department</button></form>
+                        </li>
+                        <% } %>
+                            <% } %>
+            </ul>
+        </div>
+        <div id="unavailable" style="display: none;">
+            <ul>
+                <% for(let e of employees){ %>
+                    <%if(e.isAdmin == false && e.isHOD == false && e.isAvailable== false){%>
+
+                        <li>
+                            <%= e.firstName %> -
+                                <%= e.department %> - <a href="account/<%= e._id %> ">details</a>
+                                    <form action="/mkhod/<%= e._id %> " method="post"><button type="submit">Make Head of Department</button></form>
+                        </li>
+                        <% } %>
+                            <% } %>
+            </ul>
+        </div>
+
+        <h1>head of deparmets list</h1>
+        <ul>
+            <% for(let e of employees){ %>
+                <%if(e.isAdmin == false && e.isHOD == true){%>
+
+                    <li>
+                        <%= e.firstName %> -
+                            <%= e.department %> - <a href="account/<%= e._id %> ">details</a>
+                                <form action="/mkemp/<%= e._id %> " method="post"><button type="submit">remove Head of Department</button></form>
+                    </li>
+                    <% } %>
+                        <% } %>
+        </ul>
+        <a href="/departments">departments</a>
+        <script src="/app.js"></script>
+</body>
+
+</html>
+<!-- get - account/:id - show account
+get - account/:id/edit - show edit form
+patch - account/:id - edit
+delete -->

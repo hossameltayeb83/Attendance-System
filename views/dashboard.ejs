@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%= message  %>
+        <h1>
+            <%= employee.department %> welcome employee,
+                <%= employee.firstName %> you're
+                    <%= employee.isAvailable === true ? 'Checked-In':'Checked-Out' %>
+        </h1>
+        <form action="/logout" method="post">
+            <button type="submit">logout</button>
+        </form>
+        <form action="/checkin/<%= employee._id %>" method="post">
+            <button type="submit" <%=employee.isAvailable===true ? 'disabled': '' %>>Check-IN</button>
+        </form>
+        <form action="/checkout/<%= employee._id %>" method="post">
+            <button type="submit" <%=employee.isAvailable===false ? 'disabled': '' %>>Check-Out</button>
+        </form>
+        <button><a href="/request/<%= employee._id %> ">Leaving Request</a></button>
+</body>
+
+</html>

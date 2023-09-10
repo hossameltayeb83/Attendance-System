@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>departments list</h1>
+    <ul>
+        <% for(let d of departments) {%>
+            <li>
+                <%= d.name %> -
+                    <%= d.startOfDay %> -
+                        <%= d.endOfDay %> - <a href="/departments/<%= d._id %>/edit">edit</a>
+                            <form action="/departments/<%= d._id %>?_method=delete" method="post"><button type="submit">delete</button></form>
+            </li>
+            <% } %>
+    </ul>
+    <form action="/departments" method="post">
+        <label for="department">Enter new Department</label>
+        <input type="text" name="department" id="department">
+        <label for="startOfDay">Set start time of working day</label>
+        <input type="time" name="startOfDay" id="startOfDay">
+        <label for="endOfDay">Set end time of working day</label>
+        <input type="time" name="endOfDay" id="endOfDay">
+        <button type="submit">Add</button>
+    </form>
+</body>
+
+</html>

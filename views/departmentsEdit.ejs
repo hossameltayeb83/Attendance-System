@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/departments/<%= department._id %>?_method=put" method="POST">
+        <label for="department">Enter new Department name</label>
+        <input type="text" name="department" id="department" value="<%= department.name  %>">
+        <label for="startOfDay">Set start time of working day</label>
+        <input type="time" name="startOfDay" id="startOfDay" value="<%= department.startOfDay  %>">
+        <label for=" endOfDay ">Set end time of working day</label>
+        <input type="time" name="endOfDay" id="endOfDay " value="<%=department.endOfDay %>">
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+
+</html>

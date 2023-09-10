@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= employee.firstName %> - <%=employee.department%> <a href="/account/<%= employee._id %>/edit ">edit</a> </h1>
+    <h2>Absence days the last 30 days: <%= 30 -logs.length  %> </h2>
+    <h3>Attended Days:</h3>
+    <ul>
+        <% for(log of logs){ %> 
+            <li><%= log.time.toDateString() %> </li>
+            <% } %> 
+    </ul>
+</body>
+</html>
